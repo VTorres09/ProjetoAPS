@@ -1,6 +1,7 @@
 .login__card{
     margin-top: 20vh;
-    width: 25%;
+    width: 90%;
+    max-width: 400px;
 }
 
 .login__button{
