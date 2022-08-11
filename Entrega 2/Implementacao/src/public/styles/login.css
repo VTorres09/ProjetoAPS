@@ -1,0 +1,13 @@
+.login__card{
+    margin-top: 20vh;
+    width: 90%;
+    max-width: 400px;
+}
+
+.login__button{
+    margin: 0 auto -3rem auto;
+}
+
+.login__form {
+    margin: 2rem 0 2rem 0
+}
