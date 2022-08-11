@@ -1,0 +1,55 @@
+
+html{
+    background-color: rgb(252, 242, 242);
+    font-family: 'Roboto', sans-serif;
+    color: #666;
+}
+
+.card{
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+    padding: 20px 10px;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__input {
+    color: #666;
+    box-shadow: inset 3px 3px 5px rgba(0,0,0,0.15);
+    background-color: rgb(255, 255, 255);
+    border-radius: 12px;
+    font-size: 1.2rem;
+    margin: 0 auto 1rem auto;
+    padding: 1.5rem 2rem;
+    border: none;
+    width: 100%;
+    outline: 0;
+    transition: all 0.5s ;
+}   .form__input:focus {
+        color: rgb(255, 123, 123);
+        box-shadow: inset -1px -2px 2px rgba(50,0,0,0.2);
+        background-color: rgb(255, 250, 250);
+        transition: all 0.5s cubic-bezier(0.1, 0.9, 0.3, 1.5);
+    }
+
+.form__button {
+    background-color: rgb(255, 123, 123);
+    border-radius: 12px;
+    box-shadow: 3px 4px 5px rgba(0,0,0,0.15);
+    color: white;
+    font-size: 1.2rem;
+    padding: 1.5rem 2rem;
+    border: none;
+    width: 80%;
+    outline: 0;
+    transition: all 0.5s ;
+}   .form__button:hover {
+        box-shadow: 4px 5px 8px rgba(50,0,0,0.2);
+        transition: all 0.5s cubic-bezier(0.1, 0.9, 0.3, 1.5);
+    }
