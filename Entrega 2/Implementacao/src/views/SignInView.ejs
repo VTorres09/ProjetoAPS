@@ -8,17 +8,17 @@
         <link href="styles/global.css" rel="stylesheet" type="text/css" />
         <link href="styles/login.css" rel="stylesheet" type="text/css" />
     </head>
+
     <body class="column">
         
         <div class="column card login__card">
 
             <h1>Sign In</h1>
-            <form class="column login__form">
-                <input type="text" class="form__input" id="name" placeholder="Nome" />
-                <input type="tel" class="form__input" id="cpf" placeholder="CPF" />
-                <input type="password" class="form__input" id="pass" placeholder="Senha" />
+            <form class="column login__form" method="POST" action="/register">
+                <input type="tel" class="form__input" name="cpf" placeholder="CPF" />
+                <input type="password" class="form__input" name="pass" placeholder="Senha" />
+                <button class="form__button login__button" type="submit">Registrar</button>
             </form>
-            <button class="form__button login__button" id="login">Registrar</button>
 
         </div>
 

@@ -1,10 +1,15 @@
 import express from 'express'
 
 let path = require('path');
+let UserController = require('./controllers/UserController');
 
 const app = express()
 
 const port = 3000
+
+app.use(express.urlencoded({
+    extended: true
+}))
 
 app.set('view engine', 'ejs')
 
@@ -20,8 +25,16 @@ app.get("/login", (req, res) => {
     res.render('LoginView')
 })
 
+const userController = new UserController()
+
 app.get("/sign", (req, res) => {
     res.render('SignInView')
+})
+
+app.post("/register", (req, res) => {
+    userController.cadastrarUsuario(req.body.cpf, req.body.pass)
+    res.end()
+    /**@TODO redirect to login */
 })
 
 app.listen(port, () => {

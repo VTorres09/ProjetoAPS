@@ -2,7 +2,7 @@ class UsuarioBDR {
     constructor() {}
 
     inserirUsuario(cpf: string, nome: string) {
-        // inserir usuario no banco de dados
+        console.log(cpf, nome)
     }
 }
 
