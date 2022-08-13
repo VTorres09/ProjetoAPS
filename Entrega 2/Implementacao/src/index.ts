@@ -17,6 +17,8 @@ app.use(express.static(__dirname + '/public/'));
 
 app.set('views',  path.join(__dirname, ".", "views"))
 
+// ROUTES: 
+
 app.get("/", (req, res) => {
     res.render('LoginView')
 })
@@ -34,7 +36,7 @@ app.get("/sign", (req, res) => {
 app.post("/register", (req, res) => {
     userController.cadastrarUsuario(req.body.cpf, req.body.pass)
     res.end()
-    /**@TODO redirect to login */
+    res.redirect('/login')
 })
 
 app.listen(port, () => {
