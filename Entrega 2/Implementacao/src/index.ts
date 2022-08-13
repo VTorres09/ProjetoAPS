@@ -30,7 +30,7 @@ app.get("/login", (req, res) => {
 const userController = new UserController()
 
 app.get("/sign", (req, res) => {
-    res.render('SignInView')
+    res.render('SignUpView')
 })
 
 app.post("/register", (req, res) => {
