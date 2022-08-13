@@ -7,6 +7,8 @@ const app = express()
 
 const port = 3000
 
+const userController = new UserController()
+
 app.use(express.urlencoded({
     extended: true
 }))
@@ -19,6 +21,7 @@ app.set('views',  path.join(__dirname, ".", "views"))
 
 // ROUTES: 
 
+// GETS:
 app.get("/", (req, res) => {
     res.render('LoginView')
 })
@@ -27,17 +30,21 @@ app.get("/login", (req, res) => {
     res.render('LoginView')
 })
 
-const userController = new UserController()
-
 app.get("/sign", (req, res) => {
     res.render('SignUpView')
 })
 
+app.get("/menu_item", (req, res) => {
+    res.render('MenuItemCreationView')
+})
+
+// POSTS:
 app.post("/register", (req, res) => {
     userController.cadastrarUsuario(req.body.cpf, req.body.pass)
     res.end()
     res.redirect('/login')
 })
+
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
