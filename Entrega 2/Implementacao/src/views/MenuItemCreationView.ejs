@@ -20,18 +20,24 @@
 
             <div class="column">
                 <div class="sticky card menu_item__card">
-                    <form class="column">
+                    <form class="column" method="POST" action="/menu_item/create" >
                         <div class="non-responsive-row row_space_between">
                             <h3 class="menu_title">Nome:</h3>
-                            <input type="text" class="form__input menu_item__input" id="name" placeholder="" />
+                            <input type="text" name="name" class="form__input menu_item__input" id="name" placeholder="" />
                         </div>
                         <div class="non-responsive-row row_space_between">
                             <h3 class="menu_title">Descrição:</h3>
-                            <input type="text" class="form__input menu_item__input" id="name" placeholder="" />
+                            <input type="text" name="description" class="form__input menu_item__input" id="description" placeholder="" />
+                        </div>
+                        <div class="non-responsive-row row_space_between">
+                            <h3 class="menu_title">Ingredientes selecionados:</h3>
+                            <h4 class="accent__text"></h4>
+                            <input type="text" name="ingredients" class="form__input menu_item__input" id="ingredients" placeholder="" hidden/>
                         </div>
                         <div class="non-responsive-row row_space_between">
                             <h3 class="menu_title">Calorias:</h3>
                             <h4 class="accent__text">50kcal</h4>
+                            <input type="text" name="calories" class="form__input menu_item__input" id="calories" hidden value=""/>
                         </div>
                         <button class="form__button create__button" id="login">Criar</button>
                     </form>

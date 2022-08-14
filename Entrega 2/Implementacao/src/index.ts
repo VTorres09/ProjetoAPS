@@ -2,12 +2,15 @@ import express from 'express'
 
 let path = require('path');
 let UserController = require('./controllers/UserController');
+let PratoController = require('./controllers/PratoController');
 
 const app = express()
 
 const port = 3000
 
-const userController = new UserController()
+const pratoController = new PratoController();
+
+const userController = new UserController();
 
 app.use(express.urlencoded({
     extended: true
@@ -38,11 +41,17 @@ app.get("/menu_item", (req, res) => {
     res.render('MenuItemCreationView')
 })
 
+app.post("/menu_item/create", (req, res) => {
+    pratoController.cadastrarPrato(req.body.name, req.body.description, req.body.calories, req.body.ingredients);
+    res.redirect('/menu_item')
+    res.end()
+})
+
 // POSTS:
 app.post("/register", (req, res) => {
     userController.cadastrarUsuario(req.body.cpf, req.body.pass)
-    res.end()
     res.redirect('/login')
+    res.end()
 })
 
 
