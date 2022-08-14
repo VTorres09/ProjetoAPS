@@ -16,6 +16,41 @@
             <h3 class="navbar__item">Quarto B2</h3>
         </div>
 
+        <script>
+
+            fetch("/kitchen").then(ingredients => ingredients.json()).then(ingredients => 
+                {
+
+                    for (let ingredient of JSON.parse(ingredients) ){
+
+                        let ingredientCard = document.createElement("div")
+                        ingredientCard.classList.add("card")
+                        ingredientCard.classList.add("ingredient__card")
+
+                        let columnDiv = document.createElement("column")
+                        columnDiv.classList.add("column")
+
+                        let ingredientNameH3 = document.createElement("h3")
+                        ingredientNameH3.innerText = ingredient.descricao
+
+                        let ingredientCaloriesH4 = document.createElement("h4")
+                        ingredientCaloriesH4.classList.add("accent__text")
+                        ingredientCaloriesH4.innerText = ingredient.calorias
+
+                        columnDiv.appendChild(ingredientNameH3)
+                        columnDiv.appendChild(ingredientCaloriesH4)
+
+                        ingredientCard.appendChild(columnDiv)
+
+                        document.getElementById("ingredients-container").appendChild(ingredientCard)
+
+                    }
+
+                }
+            )
+
+        </script>
+
         <div class="row">
 
             <div class="column">
@@ -44,19 +79,7 @@
                 </div>
             </div>
 
-            <div class="column ingredients_list"> 
-                <% for(var i = 0; i < 10; i++) { %>
-                    <div class="card ingredient__card">
-                        <div class="column">
-                            <h3>
-                                Ingrediente <%= i %>
-                            </h3>
-                            <h4 class="accent__text">
-                                <%= Math.ceil((Math.random()*i + Math.random()) * 10) %>kcal
-                            </h4>
-                        </div>
-                    </div>
-                <% } %>
+            <div class="column ingredients_list" id="ingredients-container"> 
             </div>
 
         </div>

@@ -3,6 +3,7 @@ import express from 'express'
 let path = require('path');
 let UserController = require('./controllers/UserController');
 let PratoController = require('./controllers/PratoController');
+let ComunicacaoCozinha = require('./subsistema/ComunicacaoCozinha.ts')
 
 const app = express()
 
@@ -11,6 +12,8 @@ const port = 3000
 const pratoController = new PratoController();
 
 const userController = new UserController();
+
+const comunicacaoCozinha = new ComunicacaoCozinha();
 
 app.use(express.urlencoded({
     extended: true
@@ -39,6 +42,13 @@ app.get("/sign", (req, res) => {
 
 app.get("/menu_item", (req, res) => {
     res.render('MenuItemCreationView')
+})
+
+app.get("/kitchen", (req, res) => {
+
+    res.set('Content-Type', 'application/json')
+
+    res.send( JSON.stringify(comunicacaoCozinha.buscarIngredientes("foo") ) )
 })
 
 app.post("/menu_item/create", (req, res) => {
