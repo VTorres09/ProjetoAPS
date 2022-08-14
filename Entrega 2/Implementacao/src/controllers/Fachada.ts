@@ -11,7 +11,7 @@ class Fachada {
     }
 
     static cadastrarPrato
-    (name: string, description: string, ingredients: string, calories: string) {
+    (name: string, description: string, ingredients: string, calories: number) {
 
         let controladorPrato = new ControladorPratoClass();
 

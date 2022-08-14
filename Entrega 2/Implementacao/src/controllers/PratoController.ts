@@ -5,7 +5,7 @@ class PratoController {
     constructor() {}
 
     cadastrarPrato
-    (name: string, description: string, ingredients: string, calories: string) {
+    (name: string, description: string, ingredients: string, calories: number) {
          fachadaClass.cadastrarPrato(name, description, ingredients, calories)
     }
 

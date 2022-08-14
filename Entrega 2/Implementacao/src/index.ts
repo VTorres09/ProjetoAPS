@@ -52,7 +52,7 @@ app.get("/kitchen", (req, res) => {
 })
 
 app.post("/menu_item/create", (req, res) => {
-    pratoController.cadastrarPrato(req.body.name, req.body.description, req.body.calories, req.body.ingredients);
+    pratoController.cadastrarPrato(req.body.name, req.body.description, 10, req.body.ingredients);
     res.redirect('/menu_item')
     res.end()
 })
