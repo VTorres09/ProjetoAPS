@@ -44,11 +44,11 @@ app.get("/menu_item", (req, res) => {
     res.render('MenuItemCreationView')
 })
 
-app.get("/kitchen", (req, res) => {
+app.get("/kitchen/:food", async (req, res) => {
 
     res.set('Content-Type', 'application/json')
 
-    res.send( JSON.stringify(comunicacaoCozinha.buscarIngredientes("foo") ) )
+    res.send( JSON.stringify(await comunicacaoCozinha.buscarIngredientes(req.params.food) ) )
 })
 
 app.post("/menu_item/create", (req, res) => {

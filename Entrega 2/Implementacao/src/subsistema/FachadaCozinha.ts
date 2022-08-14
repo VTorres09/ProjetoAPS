@@ -1,7 +1,14 @@
 class FachadaCozinha {
 
-    static buscarIngredientes(alimento: string){
-        return JSON.stringify([
+    static async buscarIngredientes(alimento: string){
+
+        const externalAPIUrl = `https://caloriasporalimentoapi.herokuapp.com/api/calorias/?descricao=${alimento}`
+
+        const externalAPIResponse = await fetch(externalAPIUrl).then(res => res.json())
+
+        return JSON.stringify(externalAPIResponse)
+
+        /* return JSON.stringify([
             {
                 descricao: "Frango",
                 quantidade: "1/2 frango (334 g)",
@@ -27,7 +34,7 @@ class FachadaCozinha {
                 quantidade: "1 fatia (125 g)",
                 calorias: "296 kcal"
             }
-        ])
+        ]) */
     }
 
 }

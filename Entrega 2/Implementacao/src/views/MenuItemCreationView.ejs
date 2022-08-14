@@ -18,36 +18,42 @@
 
         <script>
 
-            fetch("/kitchen").then(ingredients => ingredients.json()).then(ingredients => 
-                {
+            const foods = ["Queijo"]
 
-                    for (let ingredient of JSON.parse(ingredients) ){
+            for (let food of foods) {
 
-                        let ingredientCard = document.createElement("div")
-                        ingredientCard.classList.add("card")
-                        ingredientCard.classList.add("ingredient__card")
+                fetch(`/kitchen/${food}`).then(ingredients => ingredients.json()).then(ingredients => 
+                    {
 
-                        let columnDiv = document.createElement("column")
-                        columnDiv.classList.add("column")
+                        for (let ingredient of JSON.parse(ingredients) ){
 
-                        let ingredientNameH3 = document.createElement("h3")
-                        ingredientNameH3.innerText = ingredient.descricao
+                            let ingredientCard = document.createElement("div")
+                            ingredientCard.classList.add("card")
+                            ingredientCard.classList.add("ingredient__card")
 
-                        let ingredientCaloriesH4 = document.createElement("h4")
-                        ingredientCaloriesH4.classList.add("accent__text")
-                        ingredientCaloriesH4.innerText = ingredient.calorias
+                            let columnDiv = document.createElement("column")
+                            columnDiv.classList.add("column")
 
-                        columnDiv.appendChild(ingredientNameH3)
-                        columnDiv.appendChild(ingredientCaloriesH4)
+                            let ingredientNameH3 = document.createElement("h3")
+                            ingredientNameH3.innerText = ingredient.descricao
 
-                        ingredientCard.appendChild(columnDiv)
+                            let ingredientCaloriesH4 = document.createElement("h4")
+                            ingredientCaloriesH4.classList.add("accent__text")
+                            ingredientCaloriesH4.innerText = ingredient.calorias
 
-                        document.getElementById("ingredients-container").appendChild(ingredientCard)
+                            columnDiv.appendChild(ingredientNameH3)
+                            columnDiv.appendChild(ingredientCaloriesH4)
 
+                            ingredientCard.appendChild(columnDiv)
+
+                            document.getElementById("ingredients-container").appendChild(ingredientCard)
+
+                        }
                     }
 
-                }
-            )
+                )
+
+            }
 
         </script>
 
