@@ -1,0 +1,62 @@
+.ingredient__card {
+    width: 40vw;
+    max-width: 600px;
+    margin-bottom: 15px;
+}
+
+.menu_item__card {
+    top: 10vh;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20vh;
+}
+
+@media only screen and (max-width: 600px) {
+    .ingredient__card {
+        width: 85vw;
+        max-width: 600px;
+        margin-bottom: 15px;
+    }
+    
+    .menu_item__card {
+        position: fixed;
+        top: 50px;
+        width: 90vw;
+        max-width: 600px;
+        margin-top: 0;
+    }
+}
+
+.menu_title {
+    margin-right: 10%;
+}
+
+.menu_item__input {
+    max-width: 100%;
+}
+@media only screen and (max-width: 600px) {
+    .menu_item__input {
+        height: 2rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .create__button { 
+        margin-bottom: -3rem;
+        height: 2rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .ingredients_list { 
+        margin-top: 30vh;
+    }
+}
+
+.checkbox {
+    height: 50px;
+    width: 50px;
+    border-radius: 12px;
+} .checkbox:checked {
+    background-color: red;
+}

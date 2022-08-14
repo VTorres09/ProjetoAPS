@@ -6,17 +6,53 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="styles/global.css" rel="stylesheet" type="text/css" />
+        <link href="styles/form.css" rel="stylesheet" type="text/css" />
         <link href="styles/menuItemCreation.css" rel="stylesheet" type="text/css" />
     </head>
     <body class="column">
         
         <div class="navbar">
-            <div class="navbar__item">
-                <button>Menu</button>
+            <h3 class="navbar__item accent__text">Crie um novo prato!</h3>
+            <h3 class="navbar__item">Quarto B2</h3>
+        </div>
+
+        <div class="row">
+
+            <div class="column">
+                <div class="sticky card menu_item__card">
+                    <form class="column">
+                        <div class="non-responsive-row row_space_between">
+                            <h3 class="menu_title">Nome:</h3>
+                            <input type="text" class="form__input menu_item__input" id="name" placeholder="" />
+                        </div>
+                        <div class="non-responsive-row row_space_between">
+                            <h3 class="menu_title">Descrição:</h3>
+                            <input type="text" class="form__input menu_item__input" id="name" placeholder="" />
+                        </div>
+                        <div class="non-responsive-row row_space_between">
+                            <h3 class="menu_title">Calorias:</h3>
+                            <h4 class="accent__text">50kcal</h4>
+                        </div>
+                        <button class="form__button create__button" id="login">Criar</button>
+                    </form>
+                </div>
             </div>
-            <div class="navbar__item">
-                <h1>Quarto B2</h1>
+
+            <div class="column ingredients_list"> 
+                <% for(var i = 0; i < 10; i++) { %>
+                    <div class="card ingredient__card">
+                        <div class="column">
+                            <h3>
+                                Ingrediente <%= i %>
+                            </h3>
+                            <h4 class="accent__text">
+                                <%= Math.ceil((Math.random()*i + Math.random()) * 10) %>kcal
+                            </h4>
+                        </div>
+                    </div>
+                <% } %>
             </div>
+
         </div>
 
     </body>
