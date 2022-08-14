@@ -2,6 +2,7 @@ import pool from "../../db/";
 
 class UsuarioBDR {
     constructor() {}
+
     async inserirUsuario(cpf: string, password: string) {
         const query = `INSERT INTO users (cpf, password) 
             VALUES ($1, $2) RETURNING cpf`;
@@ -21,4 +22,4 @@ class UsuarioBDR {
     }
 }
 
-export default UsuarioBDR;
+module.exports = UsuarioBDR

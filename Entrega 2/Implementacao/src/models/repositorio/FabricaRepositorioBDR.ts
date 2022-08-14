@@ -1,4 +1,4 @@
-const UsuarioBDRClass = require('./UsuarioBDR.ts')
+const UsuarioBDR = require('./UsuarioBDR.ts')
 const IFabricaRepositorioAbstrata = require('./FabricaRepositorioAbstrata')
 
 class FabricaRepositorioBDR extends IFabricaRepositorioAbstrata {
@@ -8,7 +8,7 @@ class FabricaRepositorioBDR extends IFabricaRepositorioAbstrata {
     }
 
     criarRepositorioUsuario() {
-        return new UsuarioBDRClass();
+        return new UsuarioBDR();
     }
 
 }
