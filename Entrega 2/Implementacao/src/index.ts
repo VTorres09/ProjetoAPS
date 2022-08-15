@@ -41,7 +41,11 @@ app.get("/sign", (req, res) => {
 })
 
 app.get("/menu_item", (req, res) => {
-    res.render('MenuItemCreationView')
+    res.render('MenuItemCreationView', {token: undefined})
+})
+
+app.get("/menu_item/:token", (req, res) => {
+    res.render('MenuItemCreationView', {token: req.params.token} )
 })
 
 app.get("/kitchen/:food", async (req, res) => {
@@ -61,6 +65,18 @@ app.post("/menu_item/create", (req, res) => {
 app.post("/register", (req, res) => {
     userController.cadastrarUsuario(req.body.cpf, req.body.pass)
     res.redirect('/login')
+    res.end()
+})
+
+// POSTS:
+app.post("/login", async (req, res) => {
+    const success = await userController.autenticarUsuario(req.body.cpf, req.body.pass)
+    if (success) {
+        res.redirect(`/menu_item/${req.body.cpf}`)
+    }
+    else {
+        res.redirect("/login")
+    }
     res.end()
 })
 

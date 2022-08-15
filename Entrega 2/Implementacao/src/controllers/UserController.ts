@@ -6,12 +6,12 @@ class UserController {
 
     }
 
-    cadastrarUsuario(cpf: string, nome: string) {
-         fachada.cadastrarUsuario(cpf, nome)
+    cadastrarUsuario(cpf: string, senha: string) {
+         fachada.cadastrarUsuario(cpf, senha)
     }
 
-    autenticarUsuario() {
-
+    async autenticarUsuario(cpf: string, senha: string) {
+        return await fachada.autenticarUsuario(cpf, senha);
     }
 
 }
