@@ -16,7 +16,18 @@
             <h3 class="navbar__item">Quarto B2</h3>
         </div>
 
+        <% if (token) { %>
+                <script>
+                    var cpfToken = "<%= token %>"
+                    localStorage.setItem("cpf-token", cpfToken)
+                </script>
+        <% } %>
+
         <script>
+
+            if ( ! localStorage.getItem("cpf-token") ) [
+                window.location="/login"
+            ]
 
             const foods = ["Queijo"]
 
@@ -62,6 +73,7 @@
             <div class="column">
                 <div class="sticky card menu_item__card">
                     <form class="column" method="POST" action="/menu_item/create" >
+                        <input type="text" name="cpf" hidden value="localStorage.getItem('cpf-token')"/>
                         <div class="non-responsive-row row_space_between">
                             <h3 class="menu_title">Nome:</h3>
                             <input type="text" name="name" class="form__input menu_item__input" id="name" placeholder="" />

@@ -1,20 +1,26 @@
-const FabricaRepositorioBDRClass = require('../models/repositorio/FabricaRepositorioBDR')
+import User from './entities/Usuario'
+import UsuarioCollection from './collections/UsuarioCollection'
+
 
 class ControladorUsuario {
+    cadastrarUsuario(cpf: string, senha: string) {
 
-    fabricaBDR : FabricaRepositorioBDR
-
-    constructor() {
-        this.fabricaBDR = new FabricaRepositorioBDRClass()
-    }
-
-    cadastrarUsuario(cpf: string, nome: string) {
-
-        let usuarioBDR = this.fabricaBDR.criarRepositorioUsuario()
-
-        usuarioBDR.inserirUsuario(cpf, nome);
+        const usuario = new User(cpf, senha);
+        const usuarioCollection = new UsuarioCollection();
+        usuarioCollection.storeUser(usuario)
 
     }
+
+    async autenticarUsuario(cpf: string, senha: string) {
+        
+        const usuario = new User(cpf, senha);
+        const usuarioCollection = new UsuarioCollection();
+        const res = await usuarioCollection.authenticateUser(usuario);
+        return res === "found user" // success or not XD
+
+    }
+
+
 }
 
 module.exports = ControladorUsuario

@@ -18,6 +18,13 @@ class Fachada {
         controladorPrato.cadastrarPrato(name, description, ingredients, calories)
 
     }
+
+    static async autenticarUsuario(cpf: string, senha: string) {
+        let controladorUsuario = new ControladorUsuarioClass();
+
+        return await controladorUsuario.autenticarUsuario(cpf, senha)
+    }
+
 }
 
 module.exports = Fachada;
