@@ -1,4 +1,4 @@
-import express from 'express'
+import express from 'express';
 
 let path = require('path');
 let UserController = require('./controllers/UserController');
@@ -23,7 +23,7 @@ app.set('view engine', 'ejs')
 
 app.use(express.static(__dirname + '/public/'));
 
-app.set('views',  path.join(__dirname, ".", "views"))
+app.set('views', path.join(__dirname, ".", "views"))
 
 // ROUTES: 
 
@@ -48,7 +48,7 @@ app.get("/kitchen/:food", async (req, res) => {
 
     res.set('Content-Type', 'application/json')
 
-    res.send( JSON.stringify(await comunicacaoCozinha.buscarIngredientes(req.params.food) ) )
+    res.send(JSON.stringify(await comunicacaoCozinha.buscarIngredientes(req.params.food)))
 })
 
 app.post("/menu_item/create", (req, res) => {

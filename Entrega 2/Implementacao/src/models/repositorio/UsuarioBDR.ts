@@ -1,22 +1,30 @@
 import pool from "../../db/";
 
 class UsuarioBDR {
-    constructor() {}
+    constructor() { }
 
     async inserirUsuario(cpf: string, password: string) {
-        const query = `INSERT INTO users (cpf, password) 
+
+        try {
+            const query = `INSERT INTO users (cpf, password) 
             VALUES ($1, $2) RETURNING cpf`;
-        await pool.query(query, [cpf, password])
+
+            const res = pool.query(query, [cpf, password])
+            return res;
+        } catch (err) {
+            return err;
+        }
+
     }
 
     async findUser(cpf: string, password: string) {
         const query = `SELECT cpf, password FROM users WHERE cpf = $1`;
-        
+
         const result = await pool.query(query, [cpf])
 
-        if(result.rows.length == 0){return "user not found"} 
+        if (result.rows.length == 0) { return "user not found" }
 
-        if(password == result.rows[0].password) return "found user"
+        if (password == result.rows[0].password) return "found user"
 
         return "wrong password"
     }

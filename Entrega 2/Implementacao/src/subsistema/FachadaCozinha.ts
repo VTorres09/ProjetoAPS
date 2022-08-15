@@ -1,10 +1,13 @@
+
+import fetch from 'node-fetch';
+
 class FachadaCozinha {
 
-    static async buscarIngredientes(alimento: string){
+    static async buscarIngredientes(alimento: string) {
 
         const externalAPIUrl = `https://caloriasporalimentoapi.herokuapp.com/api/calorias/?descricao=${alimento}`
 
-        const externalAPIResponse = await fetch(externalAPIUrl).then(res => res.json())
+        const externalAPIResponse = await fetch(externalAPIUrl).then((res: { json: () => any; }) => res.json())
 
         return JSON.stringify(externalAPIResponse)
 
