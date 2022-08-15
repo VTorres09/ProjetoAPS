@@ -62,7 +62,30 @@
                         }
                     }
 
-                )
+                ).then(() => {
+
+                    let selected = []
+                    const ingredients = [ ...document.querySelectorAll(".ingredient__card") ]
+                    
+                    ingredients.forEach((ing) => {
+
+                        ing.addEventListener("click", () => {
+                            
+                            const [name, caloriesString] = ing.innerText.split('\n')
+                            const calories = parseInt(caloriesString.replace(/[^0-9]/g, ''))
+
+                            if(ing.classList.contains("ingredient__card--selected")){
+                                selected.splice(selected.indexOf({ name, calories }), 1)
+                            }else{
+                                selected.push({ name, calories })
+                            }
+                            console.log(selected)
+                            ing.classList.toggle("ingredient__card--selected")
+
+                        })
+
+                    })
+                })
 
             }
 
