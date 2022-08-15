@@ -66,6 +66,7 @@
 
                     let selected = []
                     const ingredients = [ ...document.querySelectorAll(".ingredient__card") ]
+                    const totalCalories = 0
                     
                     ingredients.forEach((ing) => {
 
@@ -73,6 +74,7 @@
                             
                             const [name, caloriesString] = ing.innerText.split('\n')
                             const calories = parseInt(caloriesString.replace(/[^0-9]/g, ''))
+                            const totalCaloriesElement = document.getElementById("total_calories")
 
                             if(ing.classList.contains("ingredient__card--selected")){
                                 selected.splice(selected.indexOf({ name, calories }), 1)
@@ -80,7 +82,7 @@
                                 selected.push({ name, calories })
                             }
                             console.log(selected)
-                            ing.classList.toggle("ingredient__card--selected")
+                            ing.classList.toggle("ingredient__card--selected") 
 
                         })
 
@@ -112,7 +114,7 @@
                         </div>
                         <div class="non-responsive-row row_space_between">
                             <h3 class="menu_title">Calorias:</h3>
-                            <h4 class="accent__text">50kcal</h4>
+                            <h4 class="accent__text" id="total_calories">0 kcal</h4>
                             <input type="text" name="calories" class="form__input menu_item__input" id="calories" hidden value=""/>
                         </div>
                         <button class="form__button create__button" id="login">Criar</button>
