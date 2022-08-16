@@ -59,8 +59,8 @@ app.get("/kitchen/:food", async (req, res) => {
     res.send(JSON.stringify(await comunicacaoCozinha.buscarIngredientes(req.params.food)))
 })
 
-app.post("/prato/:id", (req, res) => {
-    pratoController.deletarPrato(req.params.id);
+app.post("/prato", (req, res) => {
+    pratoController.cadastrarPrato(req.body.name, req.body.description, req.body.ingredients);
     res.redirect('/menu_item')
     res.end()
 })
@@ -71,8 +71,14 @@ app.get("/prato", async (req, res) => {
     res.send(JSON.stringify(response))
 })
 
-app.delete("/prato", async (req, res) => {
-    var response = await pratoController.listarPratos();
+app.delete("/prato/:id", async (req, res) => {
+    var response = await pratoController.deletarPrato(req.params.id);
+    console.log(response)
+    res.send(JSON.stringify(response))
+})
+
+app.put("/prato/:id", async (req, res) => {
+    var response = await pratoController.updatePrato(req.params.id, req.body.name, req.body.description);
     console.log(response)
     res.send(JSON.stringify(response))
 })

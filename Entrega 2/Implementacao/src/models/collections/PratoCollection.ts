@@ -16,6 +16,10 @@ class PratoCollection {
   async listPratos() {
     return await this.pratoBDR.listarPratos();
   }
+
+  deletarPrato(id: number) {
+    return this.pratoBDR.deletarPrato(id);
+  }
 }
 
 export default PratoCollection

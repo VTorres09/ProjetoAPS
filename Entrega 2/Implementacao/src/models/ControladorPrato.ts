@@ -27,6 +27,10 @@ class ControladorPrato {
     async listarPratos() {
         return await this.pratoCollection.listPratos()
     }
+
+    async deletarPrato(id: number) {
+        return await this.pratoCollection.deletarPrato(id)
+    }
 }
 
 module.exports = ControladorPrato

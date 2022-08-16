@@ -26,6 +26,13 @@ class Fachada {
 
     }
 
+    static async deletarPrato(id: number) {
+
+        let controladorPrato = new ControladorPratoClass();
+        return await controladorPrato.deletarPrato(id)
+
+    }
+
     static async autenticarUsuario(cpf: string, senha: string) {
         let controladorUsuario = new ControladorUsuarioClass();
 

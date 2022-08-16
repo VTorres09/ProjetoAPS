@@ -31,10 +31,10 @@ class PratoBDR {
 
     async deletarPrato(id: number) {
         try {
-            const query = `DELETE FROM TABLE itens WHERE id = $1`;
+            const query = `DELETE FROM itens WHERE id = $1`;
             const res = await pool.query(query, [id])
-
             return res;
+
         } catch (err) {
             return err;
         }
