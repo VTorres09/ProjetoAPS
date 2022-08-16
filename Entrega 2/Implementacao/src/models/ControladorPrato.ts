@@ -31,6 +31,10 @@ class ControladorPrato {
     async deletarPrato(id: number) {
         return await this.pratoCollection.deletarPrato(id)
     }
+
+    async updatePrato(id: number, name: string, description: string) {
+        return await this.pratoCollection.updatePrato(id, name, description)
+    }
 }
 
 module.exports = ControladorPrato

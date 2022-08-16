@@ -17,7 +17,9 @@ class PratoController {
         fachadaClass.deletarPrato(id)
     }
 
-
+    updatePrato(id: number, name: string, description: string) {
+        fachadaClass.updatePrato(id, name, description)
+    }
 }
 
 module.exports = PratoController

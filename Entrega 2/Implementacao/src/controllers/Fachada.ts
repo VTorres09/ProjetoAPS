@@ -33,6 +33,12 @@ class Fachada {
 
     }
 
+    static async updatePrato(id: number, name: string, description: string) {
+
+        let controladorPrato = new ControladorPratoClass();
+        return await controladorPrato.updatePrato(id, name, description)
+
+    }
     static async autenticarUsuario(cpf: string, senha: string) {
         let controladorUsuario = new ControladorUsuarioClass();
 

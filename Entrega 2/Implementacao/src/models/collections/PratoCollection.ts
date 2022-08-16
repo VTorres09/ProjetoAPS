@@ -20,6 +20,10 @@ class PratoCollection {
   deletarPrato(id: number) {
     return this.pratoBDR.deletarPrato(id);
   }
+
+  updatePrato(id: number, name: string, description: string) {
+    return this.pratoBDR.updatePrato(id, name, description);
+  }
 }
 
 export default PratoCollection
