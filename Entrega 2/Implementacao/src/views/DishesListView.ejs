@@ -14,6 +14,7 @@
         <div class="navbar">
             <h3 class="navbar__item accent__text">Esses são seus pratos!</h3>
             <h3 class="navbar__item">Quarto B2</h3>
+            <button class="form__button edit__button button" onclick="location.href='/menu_item'">Criar</button>
         </div>
 
         <script>
@@ -111,8 +112,13 @@
                             description: dishDescription.value || dish.description
                         })
 
+                        let dishCalories = document.createElement("h4")
+                        dishCalories.classList.add("accent__text")
+                        dishCalories.innerText = `Calorias: ${dish.calories}`
+
                         columnDiv.appendChild(dishName)
                         columnDiv.appendChild(dishDescription)
+                        columnDiv.appendChild(dishCalories)
 
                         rowDiv.appendChild(columnDiv)
                         rowDiv.appendChild(editButton)
