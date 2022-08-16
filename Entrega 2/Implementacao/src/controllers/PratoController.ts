@@ -12,6 +12,14 @@ class PratoController {
     listarPratos() {
         return fachadaClass.listarPratos()
     }
+
+    deletarPrato(id: number) {
+        fachadaClass.deletarPrato(id)
+    }
+
+    updatePrato(id: number, name: string, description: string) {
+        fachadaClass.updatePrato(id, name, description)
+    }
 }
 
 module.exports = PratoController
