@@ -22,90 +22,89 @@
             // description: string,
             // calories: number,
             // nutritionist: string
-            const dishes = [
-                {
-                    name: "Macarrão com Queijo",
-                    description: "Macarrão com queijo muito bom",
-                    calories: 200,
-                    nutritionist: "João"
-                },
-                {
-                    name: "Lasanha",
-                    description: "Lasanha muito boa",
-                    calories: 100,
-                    nutritionist: "Vitor"
-                },
-                {
-                    name: "Pizza",
-                    description: "Pizza muito boa",
-                    calories: 300,
-                    nutritionist: "João"
-                }
-            ]
+            // const dishes = [
+            //     {
+            //         name: "Macarrão com Queijo",
+            //         description: "Macarrão com queijo muito bom",
+            //         calories: 200,
+            //         nutritionist: "João"
+            //     },
+            //     {
+            //         name: "Lasanha",
+            //         description: "Lasanha muito boa",
+            //         calories: 100,
+            //         nutritionist: "Vitor"
+            //     },
+            //     {
+            //         name: "Pizza",
+            //         description: "Pizza muito boa",
+            //         calories: 300,
+            //         nutritionist: "João"
+            //     }
+            // ]
 
-            for (let food of foods) {
-
-                fetch(`/kitchen/${food}`).then(ingredients => ingredients.json()).then(ingredients => 
-                    {
-
-                        for (let ingredient of JSON.parse(ingredients) ){
-
-                            let ingredientCard = document.createElement("div")
-                            ingredientCard.classList.add("card")
-                            ingredientCard.classList.add("ingredient__card")
-
-                            let columnDiv = document.createElement("column")
-                            columnDiv.classList.add("column")
-
-                            let ingredientNameH3 = document.createElement("h3")
-                            ingredientNameH3.innerText = ingredient.descricao
-
-                            let ingredientCaloriesH4 = document.createElement("h4")
-                            ingredientCaloriesH4.classList.add("accent__text")
-                            ingredientCaloriesH4.innerText = ingredient.calorias
-
-                            columnDiv.appendChild(ingredientNameH3)
-                            columnDiv.appendChild(ingredientCaloriesH4)
-
-                            ingredientCard.appendChild(columnDiv)
-
-                            document.getElementById("ingredients-container").appendChild(ingredientCard)
-
-                        }
-                    }
-
-                ).then(() => {
-
-                    let selected = []
-                    const ingredients = [ ...document.querySelectorAll(".ingredient__card") ]
-                    const totalCalories = 0
-                    
-                    ingredients.forEach((ing) => {
-
-                        ing.addEventListener("click", () => {
-                            
-                            const [name, caloriesString] = ing.innerText.split('\n')
-                            const calories = parseInt(caloriesString.replace(/[^0-9]/g, ''))
-                            const totalCaloriesElement = document.getElementById("total_calories")
-
-                            if(ing.classList.contains("ingredient__card--selected")){
-                                selected.splice(selected.indexOf({ name, calories }), 1)
-                            }else{
-                                selected.push({ name, calories })
-                            }
-                            console.log(selected)
-                            ing.classList.toggle("ingredient__card--selected") 
-
-                        })
-
+            const deleteDish = async (id) => {
+                fetch(`/prato/${id}`, {method: "DELETE"})
+                    .then(response => {
+                        location.reload(true)
+                    }).catch(error => {
+                        alert("Erro ao deletar prato")
+                        console.error(error)
                     })
-                })
-
             }
+
+            fetch(`/prato`).then(dishes => dishes.json()).then(dishes => 
+                {
+                    console.log(dishes)
+                    for (let dish of dishes ){
+
+                        console.log(dish)
+
+                        let dishCard = document.createElement("div")
+                        dishCard.classList.add("card")
+                        dishCard.classList.add("dish__card")
+
+                        let rowDiv = document.createElement("row")
+                        rowDiv.classList.add("row")
+
+                        let columnDiv = document.createElement("column")
+                        columnDiv.classList.add("column")
+
+                        let deleteButton = document.createElement("button")
+                        deleteButton.classList.add("delete__button")
+                        deleteButton.innerText = "Deletar"
+                        deleteButton.onclick = () => deleteDish(dish.id)
+
+                        let editButton = document.createElement("button")
+                        editButton.classList.add("edit__button")
+                        editButton.innerText = "Editar"
+
+                        let dishNameH3 = document.createElement("h3")
+                        dishNameH3.innerText = dish.name
+
+                        let dishCaloriesH4 = document.createElement("h4")
+                        dishCaloriesH4.classList.add("accent__text")
+                        dishCaloriesH4.innerText = dish.description
+
+                        columnDiv.appendChild(dishNameH3)
+                        columnDiv.appendChild(dishCaloriesH4)
+
+                        rowDiv.appendChild(columnDiv)
+                        rowDiv.appendChild(editButton)
+                        rowDiv.appendChild(deleteButton)
+
+                        dishCard.appendChild(rowDiv)
+
+                        document.getElementById("dish-container").appendChild(dishCard)
+
+                    }
+                }
+
+            )
 
         </script>
 
-        <div id="dishes-container" /> 
+        <div id="dish-container" /> 
 
     </body>
 </html>
