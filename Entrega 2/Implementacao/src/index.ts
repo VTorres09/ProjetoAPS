@@ -4,6 +4,7 @@ let path = require('path');
 let UserController = require('./controllers/UserController');
 let PratoController = require('./controllers/PratoController');
 let ComunicacaoCozinha = require('./subsistema/ComunicacaoCozinha.ts')
+let bodyParser = require('body-parser')
 
 const app = express()
 
@@ -18,6 +19,9 @@ const comunicacaoCozinha = new ComunicacaoCozinha();
 app.use(express.urlencoded({
     extended: true
 }))
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.set('view engine', 'ejs')
 
@@ -45,11 +49,11 @@ app.get("/dishes", (req, res) => {
 })
 
 app.get("/menu_item", (req, res) => {
-    res.render('MenuItemCreationView', {token: undefined})
+    res.render('MenuItemCreationView', { token: undefined })
 })
 
 app.get("/menu_item/:token", (req, res) => {
-    res.render('MenuItemCreationView', {token: req.params.token} )
+    res.render('MenuItemCreationView', { token: req.params.token })
 })
 
 app.get("/kitchen/:food", async (req, res) => {
@@ -59,10 +63,22 @@ app.get("/kitchen/:food", async (req, res) => {
     res.send(JSON.stringify(await comunicacaoCozinha.buscarIngredientes(req.params.food)))
 })
 
-app.post("/menu_item/create", (req, res) => {
-    pratoController.cadastrarPrato(req.body.name, req.body.description, 10, req.body.ingredients);
+app.post("/prato/:id", (req, res) => {
+    pratoController.deletarPrato(req.params.id);
     res.redirect('/menu_item')
     res.end()
+})
+
+app.get("/prato", async (req, res) => {
+    var response = await pratoController.listarPratos();
+    console.log(response)
+    res.send(JSON.stringify(response))
+})
+
+app.delete("/prato", async (req, res) => {
+    var response = await pratoController.listarPratos();
+    console.log(response)
+    res.send(JSON.stringify(response))
 })
 
 // POSTS:

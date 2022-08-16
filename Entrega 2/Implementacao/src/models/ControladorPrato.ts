@@ -1,24 +1,31 @@
 const fabricaRepositorioBDR = require('../models/repositorio/FabricaRepositorioBDR')
-import Prato from './entities/Prato'
-import PratoCollection from './collections/PratoCollection'
+import PratoCollection from './collections/PratoCollection';
+import Ingrediente from './entities/Ingrediente';
+import Prato from './entities/Prato';
 
 class ControladorPrato {
 
-    // fabricaBDR : FabricaRepositorioBDR
-    // pratoCollection:PratoCollection
+    pratoCollection: PratoCollection
 
     constructor() {
-        // this.fabricaBDR = new fabricaRepositorioBDR()
+        this.pratoCollection = new PratoCollection;
     }
 
     cadastrarPrato
-    (name: string, description: string, ingredients: string, calories: number, cpf: string)
-    {
-        const prato = new Prato(name, description, calories, cpf);
-        const pratoCollection = new PratoCollection;
-        pratoCollection.storePrato(prato)
-        // let pratoBDR = this.fabricaBDR.criarRepositorioPrato();
-        // pratoBDR.inserirPrato(prato);
+        (name: string, description: string, ingredients: Array<Ingrediente>) {
+        var total_calories = 0;
+
+        for (var i = 0; i < ingredients.length; i++) {
+            total_calories += ingredients[i].calories;
+        }
+
+        const prato = new Prato(name, description, total_calories);
+
+        this.pratoCollection.storePrato(prato)
+    }
+
+    async listarPratos() {
+        return await this.pratoCollection.listPratos()
     }
 }
 

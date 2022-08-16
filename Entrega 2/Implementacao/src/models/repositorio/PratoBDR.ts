@@ -6,10 +6,11 @@ class PratoBDR {
 
     async inserirPrato(prato: Prato) {
         try {
-            const query = `INSERT INTO itens (nutritionist_id, name, description, calories) 
-            VALUES ($1, $2, $3, $4) RETURNING cpf`;
+            const query = `INSERT INTO itens (name, description, calories) 
+            VALUES ($1, $2, $3)`;
 
-            const res = await pool.query(query, ["1", prato.name, prato.description, prato.calories])
+            const res = await pool.query(query, [prato.name, prato.description, prato.calories])
+            console.log(res)
             return res;
         } catch (err) {
             return err;
@@ -19,10 +20,10 @@ class PratoBDR {
 
     async listarPratos() {
         try {
-            const query = `SELECT id, name, description, calories FROM TABLE itens`;
-            const res = await pool.query(query, [])
+            const query = `SELECT id, name, description, calories FROM itens`;
+            const res = await pool.query(query)
 
-            return res;
+            return res.rows;
         } catch (err) {
             return err;
         }

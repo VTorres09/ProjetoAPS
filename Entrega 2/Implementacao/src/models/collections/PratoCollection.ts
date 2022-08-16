@@ -8,9 +8,13 @@ class PratoCollection {
   }
 
   storePrato(
-    prato:Prato
+    prato: Prato
   ) {
     this.pratoBDR.inserirPrato(prato);
+  }
+
+  async listPratos() {
+    return await this.pratoBDR.listarPratos();
   }
 }
 
