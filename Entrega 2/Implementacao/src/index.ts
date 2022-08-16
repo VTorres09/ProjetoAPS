@@ -40,6 +40,10 @@ app.get("/sign", (req, res) => {
     res.render('SignUpView')
 })
 
+app.get("/dishes", (req, res) => {
+    res.render('DishesListView')
+})
+
 app.get("/menu_item", (req, res) => {
     res.render('MenuItemCreationView', {token: undefined})
 })
