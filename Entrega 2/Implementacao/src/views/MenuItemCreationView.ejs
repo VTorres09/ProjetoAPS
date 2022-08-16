@@ -24,13 +24,14 @@
         <% } %>
 
         <script>
+     
 
             if ( ! localStorage.getItem("cpf-token") ) [
                 window.location="/login"
             ]
 
             const foods = ["Queijo"]
-
+            let selected = []
             for (let food of foods) {
 
                 fetch(`/kitchen/${food}`).then(ingredients => ingredients.json()).then(ingredients => 
@@ -64,7 +65,7 @@
 
                 ).then(() => {
 
-                    let selected = []
+                    
                     const ingredients = [ ...document.querySelectorAll(".ingredient__card") ]
                     const totalCalories = 0
                     
@@ -91,14 +92,32 @@
 
             }
 
+
+            async function validateFormOnSubmit(form) {
+                var name = document.getElementById("info")
+            fetch('/prato', {
+                method: 'post',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {   "name": document.getElementById("name").value,
+                        "description": document.getElementById("description").value,
+                        "ingredients": selected}
+                    ),
+                  
+
+            }).then(res => res.json());
+            
+        }
         </script>
 
         <div class="row">
 
             <div class="column">
                 <div class="sticky card menu_item__card">
-                    <form class="column" method="POST" action="/menu_item/create" >
-                        <input type="text" name="cpf" hidden value="localStorage.getItem('cpf-token')"/>
+                    <form class="column" onsubmit="validateFormOnSubmit(this)">
+                        <input type="text"  name="cpf" hidden value="localStorage.getItem('cpf-token')"/>
                         <div class="non-responsive-row row_space_between">
                             <h3 class="menu_title">Nome:</h3>
                             <input type="text" name="name" class="form__input menu_item__input" id="name" placeholder="" />
@@ -109,7 +128,7 @@
                         </div>
                         <div class="non-responsive-row row_space_between">
                             <h3 class="menu_title">Ingredientes selecionados:</h3>
-                            <h4 class="accent__text"></h4>
+                            <h4 class="accent__text" id></h4>
                             <input type="text" name="ingredients" class="form__input menu_item__input" id="ingredients" placeholder="" hidden/>
                         </div>
                         <div class="non-responsive-row row_space_between">
@@ -117,7 +136,7 @@
                             <h4 class="accent__text" id="total_calories">0 kcal</h4>
                             <input type="text" name="calories" class="form__input menu_item__input" id="calories" hidden value=""/>
                         </div>
-                        <button class="form__button create__button" id="login">Criar</button>
+                        <button class="form__button create__button" id="login" type="submit">Criar</button>
                     </form>
                 </div>
             </div>

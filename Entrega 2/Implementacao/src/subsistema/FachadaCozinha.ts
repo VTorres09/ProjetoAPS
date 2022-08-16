@@ -1,4 +1,3 @@
-
 import fetch from 'node-fetch';
 
 class FachadaCozinha {
@@ -8,38 +7,22 @@ class FachadaCozinha {
         const externalAPIUrl = `https://caloriasporalimentoapi.herokuapp.com/api/calorias/?descricao=${alimento}`
 
         const externalAPIResponse = await fetch(externalAPIUrl).then((res: { json: () => any; }) => res.json())
-
-        return JSON.stringify(externalAPIResponse)
-
-        /* return JSON.stringify([
+        const mockResponse = [
             {
-                descricao: "Frango",
-                quantidade: "1/2 frango (334 g)",
-                calorias: "731kcal"
-            },
-            {
-                descricao: "Frango assado",
-                quantidade: "1 peito (172 g)",
-                calorias: "282 kcal"
-            },
-            {
-                descricao: "Pão de queijo",
-                quantidade: "1 pão (50 g)",
-                calorias: "72 kcal"
-            },
-            {
-                descricao: "Pizza de espinafre e queijo",
-                quantidade: "1 fatia (62 g)",
-                calorias: "150 kcal"
-            },
-            {
-                descricao: "Torta de maçã",
-                quantidade: "1 fatia (125 g)",
-                calorias: "296 kcal"
+                "id": {
+                    "timestamp": 1594720331,
+                    "date": "2020-07-14T09:52:11.000+00:00"
+                },
+                "descricao": "Frango/Galinha",
+                "quantidade": "1/2 frango(334g)",
+                "calorias": "731 kcal"
             }
-        ]) */
+        ]
+
+        return JSON.stringify(mockResponse)
     }
 
 }
 
 module.exports = FachadaCozinha;
+

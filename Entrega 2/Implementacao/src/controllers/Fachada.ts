@@ -3,7 +3,7 @@ const ControladorPratoClass = require('../models/ControladorPrato')
 
 class Fachada {
     static cadastrarUsuario(cpf: string, senha: string) {
-        
+
         let controladorUsuario = new ControladorUsuarioClass();
 
         controladorUsuario.cadastrarUsuario(cpf, senha);
@@ -11,11 +11,18 @@ class Fachada {
     }
 
     static cadastrarPrato
-    (name: string, description: string, ingredients: string, calories: number) {
+        (name: string, description: string, ingredients: string) {
 
         let controladorPrato = new ControladorPratoClass();
 
-        controladorPrato.cadastrarPrato(name, description, ingredients, calories)
+        controladorPrato.cadastrarPrato(name, description, ingredients)
+
+    }
+
+    static async listarPratos() {
+
+        let controladorPrato = new ControladorPratoClass();
+        return await controladorPrato.listarPratos()
 
     }
 
@@ -24,6 +31,7 @@ class Fachada {
 
         return await controladorUsuario.autenticarUsuario(cpf, senha)
     }
+
 
 }
 
