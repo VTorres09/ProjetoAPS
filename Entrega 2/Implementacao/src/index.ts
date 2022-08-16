@@ -82,6 +82,7 @@ app.delete("/prato/:id", async (req, res) => {
 })
 
 app.put("/prato/:id", async (req, res) => {
+    console.log(req.body)
     var response = await pratoController.updatePrato(req.params.id, req.body.name, req.body.description);
     console.log(response)
     res.send(JSON.stringify(response))

@@ -53,6 +53,26 @@
                     })
             }
 
+            const updateDish = async (id, newDish) => {
+                console.log(newDish)
+                fetch(`/prato/${id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }, 
+                    body: JSON.stringify({
+                        name: newDish.name,
+                        description: newDish.description,
+                    })
+                })
+                    .then(response => {
+                        location.reload(true)
+                    }).catch(error => {
+                        alert("Erro ao Atualizar prato")
+                        console.error(error)
+                    })
+            }
+
             fetch(`/prato`).then(dishes => dishes.json()).then(dishes => 
                 {
                     console.log(dishes)
@@ -70,6 +90,14 @@
                         let columnDiv = document.createElement("column")
                         columnDiv.classList.add("column")
 
+                        let dishName = document.createElement("input")
+                        dishName.classList.add("form__input")
+                        dishName.placeholder = dish.name
+
+                        let dishDescription = document.createElement("input")
+                        dishDescription.classList.add("form__input")
+                        dishDescription.placeholder = dish.description
+
                         let deleteButton = document.createElement("button")
                         deleteButton.classList.add("delete__button")
                         deleteButton.innerText = "Deletar"
@@ -77,17 +105,14 @@
 
                         let editButton = document.createElement("button")
                         editButton.classList.add("edit__button")
-                        editButton.innerText = "Editar"
+                        editButton.innerText = "Atualizar"
+                        editButton.onclick = () => updateDish(dish.id, {
+                            name: dishName.value || dish.name,
+                            description: dishDescription.value || dish.description
+                        })
 
-                        let dishNameH3 = document.createElement("h3")
-                        dishNameH3.innerText = dish.name
-
-                        let dishCaloriesH4 = document.createElement("h4")
-                        dishCaloriesH4.classList.add("accent__text")
-                        dishCaloriesH4.innerText = dish.description
-
-                        columnDiv.appendChild(dishNameH3)
-                        columnDiv.appendChild(dishCaloriesH4)
+                        columnDiv.appendChild(dishName)
+                        columnDiv.appendChild(dishDescription)
 
                         rowDiv.appendChild(columnDiv)
                         rowDiv.appendChild(editButton)
