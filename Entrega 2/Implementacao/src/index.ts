@@ -6,7 +6,7 @@ let PratoController = require('./controllers/PratoController');
 let ComunicacaoCozinha = require('./subsistema/ComunicacaoCozinha.ts')
 let bodyParser = require('body-parser')
 
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 
 const app = express()
 
