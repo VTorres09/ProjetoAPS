@@ -6,6 +6,8 @@ let PratoController = require('./controllers/PratoController');
 let ComunicacaoCozinha = require('./subsistema/ComunicacaoCozinha.ts')
 let bodyParser = require('body-parser')
 
+import fetch from 'node-fetch';
+
 const app = express()
 
 const port = 3000
@@ -45,11 +47,15 @@ app.get("/sign", (req, res) => {
 })
 
 app.get("/dishes", (req, res) => {
+    // fetch
     res.render('DishesListView')
 })
 
-app.get("/menu_item", (req, res) => {
-    res.render('MenuItemCreationView', { token: undefined })
+app.get("/menu_item", async (req, res) => {
+    
+    const externalAPIResponse = await comunicacaoCozinha.buscarIngredientes('queijo')
+
+    res.render('MenuItemCreationView', { token: undefined, externalAPI: externalAPIResponse })
 })
 
 app.get("/menu_item/:token", (req, res) => {

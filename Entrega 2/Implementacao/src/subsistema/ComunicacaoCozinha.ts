@@ -4,8 +4,7 @@ class ComunicacaoCozinha {
     constructor() {}
 
     async buscarIngredientes(alimento: string) {
-
-        return await fachadaCozinha.buscarIngredientes(alimento)
+        return fachadaCozinha.buscarIngredientes(alimento)
     }
 
 }
