@@ -46,9 +46,13 @@ app.get("/sign", (req, res) => {
     res.render('SignUpView')
 })
 
-app.get("/dishes", (req, res) => {
-    // fetch
-    res.render('DishesListView')
+app.get("/dishes", async (req, res) => {
+
+    const dishesFromDB = await pratoController.listarPratos();
+
+    const registerDish = (a : any) => {console.log(a)}
+
+    res.render('DishesListView', { dishes: dishesFromDB, registerDish })
 })
 
 app.get("/menu_item", async (req, res) => {
@@ -75,11 +79,21 @@ app.post("/prato", (req, res) => {
     res.end()
 })
 
+
+
+// /////////////////////// ////// /////////////////////// //
+// /////////////////////// APAGAR /////////////////////// //
+// /////////////////////// ////// /////////////////////// //
 app.get("/prato", async (req, res) => {
     var response = await pratoController.listarPratos();
     console.log(response)
     res.send(JSON.stringify(response))
 })
+// /////////////////////// ////// /////////////////////// //
+// /////////////////////// APAGAR /////////////////////// //
+// /////////////////////// ////// /////////////////////// //
+
+
 
 app.delete("/prato/:id", async (req, res) => {
     var response = await pratoController.deletarPrato(req.params.id);

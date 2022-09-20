@@ -1,3 +1,8 @@
+.center_col {
+    justify-content: center;
+    align-items: center;
+}
+
 .dish__card {
     width: 40vw;
     max-width: 600px;
@@ -6,6 +11,8 @@
 }
 
 .delete__button {
+    margin-top: 2rem;
+    width: 100%;
     position: relative;
     top: 0;
     left: 0;
@@ -23,6 +30,7 @@
 }
 
 .edit__button {
+    width: 100%;
     position: relative;
     top: 0;
     left: 0;

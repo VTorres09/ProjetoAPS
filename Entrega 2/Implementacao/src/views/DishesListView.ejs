@@ -17,125 +17,93 @@
             <button class="form__button edit__button button" onclick="location.href='/menu_item'">Criar</button>
         </div>
 
-        <script>
-            
-            // name: string,
-            // description: string,
-            // calories: number,
-            // nutritionist: string
-            // const dishes = [
-            //     {
-            //         name: "Macarrão com Queijo",
-            //         description: "Macarrão com queijo muito bom",
-            //         calories: 200,
-            //         nutritionist: "João"
-            //     },
-            //     {
-            //         name: "Lasanha",
-            //         description: "Lasanha muito boa",
-            //         calories: 100,
-            //         nutritionist: "Vitor"
-            //     },
-            //     {
-            //         name: "Pizza",
-            //         description: "Pizza muito boa",
-            //         calories: 300,
-            //         nutritionist: "João"
-            //     }
-            // ]
+        <div class="column ingredients_list" id="dish-container">
 
-            const deleteDish = async (id) => {
-                fetch(`/prato/${id}`, {method: "DELETE"})
-                    .then(response => {
-                        location.reload(true)
-                    }).catch(error => {
-                        alert("Erro ao deletar prato")
-                        console.error(error)
-                    })
-            }
+            <% for(var i = 0; i < dishes.length; i++) { %>
+                <div 
+                    class="dish__card card" 
+                    id=<%= `${dishes[i].id}` %>
+                >
+                    <div class="row">
 
-            const updateDish = async (id, newDish) => {
-                console.log(newDish)
-                fetch(`/prato/${id}`, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }, 
-                    body: JSON.stringify({
-                        name: newDish.name,
-                        description: newDish.description,
-                    })
-                })
-                    .then(response => {
-                        location.reload(true)
-                    }).catch(error => {
-                        alert("Erro ao Atualizar prato")
-                        console.error(error)
-                    })
-            }
+                        <div class="column center_col">
+                            <input 
+                                class="form__input"
+                                id=<%= `name-${dishes[i].id}` %>
+                                placeholder="<%= dishes[i].name %>"
+                            />
+                            <input 
+                                class="form__input"
+                                id=<%= `desc-${dishes[i].id}` %>
+                                placeholder="<%= dishes[i].description %>"
+                            />
+                            <h4 class="accent__text">
+                                Calorias: <%= dishes[i].calories %>
+                            </h4>
+                        </div>
 
-            fetch(`/prato`).then(dishes => dishes.json()).then(dishes => 
-                {
-                    console.log(dishes)
-                    for (let dish of dishes ){
+                        <div class="column center_col">
+                            <button 
+                                class="edit__button"
+                                id=<%= `${dishes[i].id}` %>
+                                onclick="updateDish(this.id)"
+                            >ATUALIZAR</button>
+                            <button 
+                                class="delete__button"
+                                id=<%= `${dishes[i].id}` %>
+                                onclick="deleteDish(this.id)"
+                            >DELETAR</button>
+                        </div>
 
-                        console.log(dish)
+                    </div>
+                </div>
+            <% } %>
 
-                        let dishCard = document.createElement("div")
-                        dishCard.classList.add("card")
-                        dishCard.classList.add("dish__card")
-
-                        let rowDiv = document.createElement("row")
-                        rowDiv.classList.add("row")
-
-                        let columnDiv = document.createElement("column")
-                        columnDiv.classList.add("column")
-
-                        let dishName = document.createElement("input")
-                        dishName.classList.add("form__input")
-                        dishName.placeholder = dish.name
-
-                        let dishDescription = document.createElement("input")
-                        dishDescription.classList.add("form__input")
-                        dishDescription.placeholder = dish.description
-
-                        let deleteButton = document.createElement("button")
-                        deleteButton.classList.add("delete__button")
-                        deleteButton.innerText = "Deletar"
-                        deleteButton.onclick = () => deleteDish(dish.id)
-
-                        let editButton = document.createElement("button")
-                        editButton.classList.add("edit__button")
-                        editButton.innerText = "Atualizar"
-                        editButton.onclick = () => updateDish(dish.id, {
-                            name: dishName.value || dish.name,
-                            description: dishDescription.value || dish.description
-                        })
-
-                        let dishCalories = document.createElement("h4")
-                        dishCalories.classList.add("accent__text")
-                        dishCalories.innerText = `Calorias: ${dish.calories}`
-
-                        columnDiv.appendChild(dishName)
-                        columnDiv.appendChild(dishDescription)
-                        columnDiv.appendChild(dishCalories)
-
-                        rowDiv.appendChild(columnDiv)
-                        rowDiv.appendChild(editButton)
-                        rowDiv.appendChild(deleteButton)
-
-                        dishCard.appendChild(rowDiv)
-
-                        document.getElementById("dish-container").appendChild(dishCard)
-
-                    }
-                }
-
-            )
-
-        </script>
-
-        <div id="dish-container" /> 
+        </div>
 
     </body>
 </html>
+
+<script>
+
+    const deleteDish = async (id) => {
+        fetch(`/prato/${id}`, {method: "DELETE"})
+            .then(response => {
+                location.reload(true)
+            }).catch(error => {
+                alert("Erro ao deletar prato")
+                console.error(error)
+            })
+    }
+
+    const updateDish = async (id) => {
+
+        const dishName = document.querySelector("#name-" + id)
+        const dishDescription = document.querySelector("#desc-" + id)
+
+        const newDish = {
+            name: dishName.value || dishName.placeholder,
+            description: dishDescription.value || dishDescription.placeholder
+        }
+
+        console.log(newDish.name, newDish.description)
+        
+        fetch(`/prato/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            }, 
+            body: JSON.stringify({
+                name: newDish.name,
+                description: newDish.description,
+            })
+        })
+            .then(response => {
+                location.reload(true)
+            }).catch(error => {
+                alert("Erro ao Atualizar prato")
+                console.error(error)
+            })
+    }
+
+</script>

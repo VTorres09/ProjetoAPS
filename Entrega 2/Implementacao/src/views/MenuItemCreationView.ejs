@@ -18,10 +18,10 @@
         </div>
 
         <% if (token) { %>
-                <script>
-                    var cpfToken = "<%= token %>"
-                    localStorage.setItem("cpf-token", cpfToken)
-                </script>
+            <script>
+                var cpfToken = "<%= token %>"
+                localStorage.setItem("cpf-token", cpfToken)
+            </script>
         <% } %>
 
         <div class="row">
@@ -107,7 +107,9 @@
                     "ingredients": selected
                 }
             ),
-        }).then(res => res.json()); 
+        }).then(res => {
+            alert(res.json())
+        }); 
     }
 
 </script>
