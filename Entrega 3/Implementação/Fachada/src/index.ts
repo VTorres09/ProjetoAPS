@@ -1,10 +1,10 @@
 import express from 'express';
 
 const app = express();
-const port = 3002;
+const port = 3000;
 
 app.get('/', (req, res) => {
-  res.send("Prato Ok!")
+  res.send("WebService Ok!")  
 });
 
 app.listen(port, () => {
