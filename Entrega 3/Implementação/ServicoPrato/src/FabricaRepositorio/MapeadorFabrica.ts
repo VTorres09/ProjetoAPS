@@ -2,7 +2,7 @@ const FabricaRepositorioBDR = require("./FabricaRepositorioBDR.ts")
 
 class MapeadorFabrica {
 
-    static mapearFabrica(tipoFabrica: string) {
+    static mapearFabrica( tipoFabrica: string | any ) {
         if (tipoFabrica == "BDR"){
             return new FabricaRepositorioBDR()
         }
@@ -10,4 +10,4 @@ class MapeadorFabrica {
 
 }
 
-module.exports = MapeadorFabrica
+export default MapeadorFabrica

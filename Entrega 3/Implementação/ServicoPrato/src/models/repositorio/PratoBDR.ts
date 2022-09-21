@@ -1,4 +1,4 @@
-import pool from "../../db/";
+import pool from "../db";
 import Prato from "../entities/Prato";
 
 class PratoBDR {
@@ -10,8 +10,10 @@ class PratoBDR {
             VALUES ($1, $2, $3)`;
 
             const res = await pool.query(query, [prato.name, prato.description, prato.calories])
-            console.log(res)
-            return res;
+
+            if (res.rows.length == 0) return false
+
+            else return true;
         } catch (err) {
             return err;
         }
@@ -23,7 +25,7 @@ class PratoBDR {
             const query = `SELECT id, name, description, calories FROM itens`;
             const res = await pool.query(query)
 
-            return res.rows;
+            return res.rows
         } catch (err) {
             return err;
         }
@@ -33,7 +35,10 @@ class PratoBDR {
         try {
             const query = `DELETE FROM itens WHERE id = $1`;
             const res = await pool.query(query, [id])
-            return res;
+            
+            if (res.rows.length == 0) return false
+
+            else return true;
 
         } catch (err) {
             return err;
@@ -48,7 +53,9 @@ class PratoBDR {
 
             const res = pool.query(query, [id, name, description])
 
-            return res;
+            if (res.rows.length == 0) return false
+
+            else return true;
         } catch (err) {
             return err;
         }

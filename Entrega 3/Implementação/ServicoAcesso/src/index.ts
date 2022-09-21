@@ -8,7 +8,6 @@ const port = 3001;
 app.use(bodyParser.json())
 
 app.post('/login', (req, res) => {
-  console.log(req.body)
   Fachada.login(req.body.cpf, req.body.password)
     .then((successo) => {
       successo ? res.send('usuario entrou') : res.send('nao entrou')

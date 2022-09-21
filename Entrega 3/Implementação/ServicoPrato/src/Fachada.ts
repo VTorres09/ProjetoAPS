@@ -1,18 +1,18 @@
-const CadastroPrato = require('../models/CadastroPrato')
-const MapeadorFabrica = require("./FabricaRepositorio/MapeadorFabrica.ts")
+const CadastroPrato = require('./CadastroPrato')
+import MapeadorFabricaInst from "./FabricaRepositorio/MapeadorFabrica"
 const FabricaRepositorioAbstrata = require('./FabricaRepositorio/FabricaRepositorioAbstrata.ts')
 require('dotenv').config()
 
+const fabricaConcreta : FabricaRepositorioAbstrata = MapeadorFabricaInst.mapearFabrica( process.env.TIPO_FABRICA );
+
 class Fachada {
 
-    fabricaConcreta : FabricaRepositorioAbstrata = MapeadorFabrica.mapearFabrica( process.env.TIPO_FABRICA );
-
-    static cadastrarPrato
+    static async cadastrarPrato
         (name: string, description: string, ingredients: string) {
 
         let cadastroPrato = new CadastroPrato(fabricaConcreta);
 
-        cadastroPrato.cadastrarPrato(name, description, ingredients)
+        return await cadastroPrato.cadastrarPrato(name, description, ingredients)
 
     }
 
@@ -39,4 +39,4 @@ class Fachada {
 
 }
 
-module.exports = Fachada;
+export default Fachada;

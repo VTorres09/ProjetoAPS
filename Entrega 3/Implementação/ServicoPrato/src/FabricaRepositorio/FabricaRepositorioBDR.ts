@@ -1,4 +1,4 @@
-const PratoBDR = require('../PratoBDR.ts')
+const PratoBDR = require('../models/repositorio/PratoBDR')
 const IFabricaRepositorioAbstrata = require('./FabricaRepositorioAbstrata')
 
 class FabricaRepositorioBDR extends IFabricaRepositorioAbstrata {

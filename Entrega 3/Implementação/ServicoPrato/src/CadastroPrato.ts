@@ -1,6 +1,6 @@
 const FabricaRepositorioAbstrata = require('./FabricaRepositorio/FabricaRepositorioAbstrata.ts')
-import Ingrediente from './entities/Ingrediente';
-import Prato from './entities/Prato';
+import Ingrediente from './models/entities/Ingrediente';
+import Prato from './models/entities/Prato';
 
 class CadastroPrato {
 
@@ -10,7 +10,7 @@ class CadastroPrato {
         this.fabrica = fabricaConcreta
     }
 
-    cadastrarPrato
+    async cadastrarPrato
         (name: string, description: string, ingredients: Array<Ingrediente>) {
         var total_calories = 0;
 
@@ -19,21 +19,24 @@ class CadastroPrato {
         }
 
         const prato = new Prato(name, description, total_calories);
-
-        this.pratoCollection.storePrato(prato)
+        const pratoBDR : any = this.fabrica.criarRepositorioPrato();
+        return await pratoBDR.inserirPrato(prato);
     }
 
     async listarPratos() {
-        return await this.pratoCollection.listPratos()
+        const pratoBDR : any = this.fabrica.criarRepositorioPrato();
+        return await pratoBDR.listarPratos();
     }
 
     async deletarPrato(id: number) {
-        return await this.pratoCollection.deletarPrato(id)
+        const pratoBDR : any = this.fabrica.criarRepositorioPrato();
+        return await pratoBDR.deletarPrato(id);
     }
 
     async updatePrato(id: number, name: string, description: string) {
-        return await this.pratoCollection.updatePrato(id, name, description)
+        const pratoBDR : any = this.fabrica.criarRepositorioPrato();
+        return await pratoBDR.updatePrato(id,name,description);
     }
 }
 
-module.exports = ControladorPrato
+module.exports = CadastroPrato
