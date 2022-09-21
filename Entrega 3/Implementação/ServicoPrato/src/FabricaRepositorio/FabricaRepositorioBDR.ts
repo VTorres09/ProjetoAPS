@@ -1,4 +1,4 @@
-const PratoBDR = require('../models/repositorio/PratoBDR')
+import PratoBDR from '../models/repositorio/PratoBDR'
 const IFabricaRepositorioAbstrata = require('./FabricaRepositorioAbstrata')
 
 class FabricaRepositorioBDR extends IFabricaRepositorioAbstrata {

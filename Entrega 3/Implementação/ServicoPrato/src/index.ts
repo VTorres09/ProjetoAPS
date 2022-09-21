@@ -8,7 +8,9 @@ const port = 3002;
 app.use(bodyParser.json())
 
 app.get('/', async (req, res) => {
+  
   return await Fachada.listarPratos();
+
 });
 
 app.put('/:id', async (req, res) => {
