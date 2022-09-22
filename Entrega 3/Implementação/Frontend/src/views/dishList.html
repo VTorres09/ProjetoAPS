@@ -9,8 +9,20 @@
     </head>
 
     <script>
+
         const pratos = axios.get("/pratos", {})
-        pratos.then(d => console.log(pratos)).catch(e => console.error(e))
+        pratos.then(d => {console.log(d)}).catch(e => {console.error(e)})
+
+        for (let i = 0; i < pratos.length; i++){
+
+            const prato = document.createElement('h4')
+            const desc = document.createElement('h6')
+
+            prato.innerText = pratos[i].name  
+            desc.innerText = prato[i].description   
+
+        }
+
     </script>
 
     <body class="column">
