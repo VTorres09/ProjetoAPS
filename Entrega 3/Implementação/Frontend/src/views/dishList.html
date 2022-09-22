@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pratos</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="styles/global.css" rel="stylesheet" type="text/css" />
+        <link href="styles/form.css" rel="stylesheet" type="text/css" />
+        <link href="styles/dishesList.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body class="column">
+        
+        <div class="navbar">
+            <h3 class="navbar__item accent__text">Esses são seus pratos!</h3>
+            <h3 class="navbar__item">Quarto B2</h3>
+            <button class="form__button edit__button button" onclick="location.href='/menu_item'">Criar</button>
+        </div>
+
+        <div class="column ingredients_list" id="dish-container">
+
+            <% for(var i = 0; i < dishes.length; i++) { %>
+                <div 
+                    class="dish__card card" 
+                    id=<%= `${dishes[i].id}` %>
+                >
+                    <div class="row">
+
+                        <div class="column center_col">
+                            <input 
+                                class="form__input"
+                                id=<%= `name-${dishes[i].id}` %>
+                                placeholder="<%= dishes[i].name %>"
+                            />
+                            <input 
+                                class="form__input"
+                                id=<%= `desc-${dishes[i].id}` %>
+                                placeholder="<%= dishes[i].description %>"
+                            />
+                            <h4 class="accent__text">
+                                Calorias: <%= dishes[i].calories %>
+                            </h4>
+                        </div>
+
+                        <div class="column center_col">
+                            <button 
+                                class="edit__button"
+                                id=<%= `${dishes[i].id}` %>
+                                onclick="updateDish(this.id)"
+                            >ATUALIZAR</button>
+                            <button 
+                                class="delete__button"
+                                id=<%= `${dishes[i].id}` %>
+                                onclick="deleteDish(this.id)"
+                            >DELETAR</button>
+                        </div>
+
+                    </div>
+                </div>
+            <% } %>
+
+        </div>
+
+    </body>
+</html>
+
+<script>
+
+    const deleteDish = async (id) => {
+        fetch(`/prato/${id}`, {method: "DELETE"})
+            .then(response => {
+                location.reload(true)
+            }).catch(error => {
+                alert("Erro ao deletar prato")
+                console.error(error)
+            })
+    }
+
+    const updateDish = async (id) => {
+
+        const dishName = document.querySelector("#name-" + id)
+        const dishDescription = document.querySelector("#desc-" + id)
+
+        const newDish = {
+            name: dishName.value || dishName.placeholder,
+            description: dishDescription.value || dishDescription.placeholder
+        }
+
+        console.log(newDish.name, newDish.description)
+        
+        fetch(`/prato/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            }, 
+            body: JSON.stringify({
+                name: newDish.name,
+                description: newDish.description,
+            })
+        })
+            .then(response => {
+                location.reload(true)
+            }).catch(error => {
+                alert("Erro ao Atualizar prato")
+                console.error(error)
+            })
+    }
+
+</script>

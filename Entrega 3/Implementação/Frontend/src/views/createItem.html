@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Menu Item</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="styles/global.css" rel="stylesheet" type="text/css" />
+        <link href="styles/form.css" rel="stylesheet" type="text/css" />
+        <link href="styles/menuItemCreation.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body class="column">
+        
+        <div class="navbar">
+            <h3 class="navbar__item accent__text">Crie um novo prato!</h3>
+            <h3 class="navbar__item">Quarto B2</h3>
+            <button class="form__button nav__button button" onclick="location.href='/dishes'">Listar</button>
+        </div>
+
+        <% if (token) { %>
+            <script>
+                var cpfToken = "<%= token %>"
+                localStorage.setItem("cpf-token", cpfToken)
+            </script>
+        <% } %>
+
+        <div class="row">
+
+            <div class="column">
+                <div class="sticky card menu_item__card">
+                    <form class="column" onsubmit="validateFormOnSubmit(this)">
+                        <input type="text"  name="cpf" hidden value="localStorage.getItem('cpf-token')"/>
+                        <div class="non-responsive-row row_space_between">
+                            <h3 class="menu_title">Nome:</h3>
+                            <input type="text" name="name" class="form__input menu_item__input" id="name" placeholder="" />
+                        </div>
+                        <div class="non-responsive-row row_space_between">
+                            <h3 class="menu_title">Descrição:</h3>
+                            <input type="text" name="description" class="form__input menu_item__input" id="description" placeholder="" />
+                        </div>
+                        <div class="non-responsive-row row_space_between">
+                            <h3 class="menu_title">Ingredientes selecionados:</h3>
+                            <h4 class="accent__text" id></h4>
+                            <input type="text" name="ingredients" class="form__input menu_item__input" id="ingredients" placeholder="" hidden/>
+                        </div>
+                        <div class="non-responsive-row row_space_between">
+                            <h3 class="menu_title">Calorias:</h3>
+                            <h4 class="accent__text" id="total_calories">0 kcal</h4>
+                            <input type="text" name="calories" class="form__input menu_item__input" id="calories" hidden value=""/>
+                        </div>
+                        <button class="form__button create__button" id="login" type="submit">Criar</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="column ingredients_list" id="ingredients-container">
+
+                <% for(var i = 0; i < externalAPI.length; i++) { %>
+                    <div 
+                        class="ingredient__card card" 
+                        id=<%= `${i}--${externalAPI[i].descricao}--${externalAPI[i].calorias}` %> 
+                        onclick="handleClick(this)"
+                    >
+                        <div class="column">
+                            <h3><%= externalAPI[i].descricao %></h3>
+                            <h4 class="accent__text"><%= externalAPI[i].calorias %></h4>
+                        </div>
+                    </div>
+                <% } %>
+
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
+
+<script>
+
+    let selected = []
+
+    function handleClick (ing) {
+        const [index, name, caloriesString] = ing.id.split('--')
+        const calories = parseInt(caloriesString.replace(/[^0-9]/g, ''))
+        const totalCaloriesElement = document.getElementById('total_calories')
+
+        if(ing.classList.contains('ingredient__card--selected')){
+            selected.splice(selected.indexOf({ name, calories }), 1)
+        }else{
+            selected.push({ name, calories })
+        }
+
+        ing.classList.toggle('ingredient__card--selected') 
+    }   
+    
+    async function validateFormOnSubmit(form) {
+        fetch('/prato', {
+            method: 'post',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    "name": document.getElementById("name").value,
+                    "description": document.getElementById("description").value,
+                    "ingredients": selected
+                }
+            ),
+        }).then(res => {
+            alert(res.json())
+        }); 
+    }
+
+</script>
