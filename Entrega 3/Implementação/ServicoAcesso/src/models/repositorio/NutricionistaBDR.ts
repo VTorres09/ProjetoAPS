@@ -11,8 +11,12 @@ class NutricionistaBDR {
             const query = `INSERT INTO users (cpf, password) 
             VALUES ($1, $2) RETURNING cpf`;
 
-            const res = pool.query(query, [nutricionista.cpf, nutricionista.senha])
-            return res;
+            const res = await pool.query(query, [nutricionista.cpf, nutricionista.senha])
+            
+            if (res.rowCount == 1) return true
+             
+            else return false
+            
         } catch (err) {
             return err;
         }

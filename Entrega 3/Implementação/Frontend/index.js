@@ -12,10 +12,6 @@ const FACHADA_URL = "http://localhost:3000"
 
 app.use(bodyParser.json())
 
-app.get('/',function(req,res){
-    res.redirect('/login')
-});
-
 app.post('/login', async (req,res) => {
 
     const postResponse = await axios.post(FACHADA_URL + "/auth/login", {
@@ -23,10 +19,26 @@ app.post('/login', async (req,res) => {
         password:   req.body.password
     })
 
-    res.json(postResponse.data)
+    res.send(postResponse.data)
 
 });
 
+app.post('/register', async (req,res) => {
+
+    const postResponse = await axios.post(FACHADA_URL + "/auth/register", {
+        cpf:        req.body.cpf,
+        password:   req.body.password
+    })
+
+    res.send(postResponse.data)
+
+});
+
+
+///// VIEWS //////
+app.get('/',function(req,res){
+    res.redirect('/login')
+});
 
 app.get('/login',function(req,res){
     res.sendFile(path.join(__dirname+'/src/views/login.html'));

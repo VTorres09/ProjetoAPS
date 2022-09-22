@@ -29,18 +29,21 @@
 
     <script>
 
-        console.log(axios)
-
         const button    = document.getElementById("login");
         const cpf       = document.getElementById("cpf");
         const password  = document.getElementById("pass");
 
         button.addEventListener('click', async () => {
-            const r = await axios.post('/login', {
+
+            const postResponse = await axios.post('/login', {
                 cpf: cpf.value,
                 password: password.value
             })
-            console.log(r.data)
+            
+            if (postResponse.data == "usuario entrou") {
+                window.location = "/create-item"
+            }
+
         })
 
     </script>

@@ -7,10 +7,10 @@ const fabricaConcreta : FabricaRepositorioAbstrata = MapeadorFabricaInst.mapearF
 class Fachada {
 
     // //////////////// Auth //////////////// //
-    static register(cpf: string, senha: string) {
+    static async register(cpf: string, senha: string) {
 
         let cadastroNutricionista = new CadastroNutricionista(fabricaConcreta);
-        cadastroNutricionista.register(cpf, senha);
+        return await cadastroNutricionista.register(cpf, senha);
 
     }
 

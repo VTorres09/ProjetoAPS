@@ -8,6 +8,7 @@
         <link href="styles/global.css" rel="stylesheet" type="text/css" />
         <link href="styles/form.css" rel="stylesheet" type="text/css" />
         <link href="styles/login.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     </head>
 
     <body class="column">
@@ -15,13 +16,36 @@
         <div class="column card login__card">
 
             <h1>Sign Up</h1>
-            <form class="column login__form" method="POST" action="http://localhost:3000/auth/register">
-                <input type="tel" class="form__input" name="cpf" placeholder="CPF" />
-                <input type="password" class="form__input" name="password" placeholder="Senha" />
-                <button class="form__button login__button" type="submit">Registrar</button>
-            </form>
+            <div class="column login__form" >
+                <input  id="cpf" type="tel" class="form__input" name="cpf" placeholder="CPF" />
+                <input  id="pass" type="password" class="form__input" name="password" placeholder="Senha" />
+                <button id="login" class="form__button login__button" type="submit">Registrar</button>
+            </div>
 
         </div>
 
     </body>
+
+    <script>
+
+        const button    = document.getElementById("login");
+        const cpf       = document.getElementById("cpf");
+        const password  = document.getElementById("pass");
+
+        button.addEventListener('click', async () => {
+
+            const postResponse = await axios.post('/register', {
+                cpf: cpf.value,
+                password: password.value
+            })
+            
+            console.log(postResponse.data)
+            if (postResponse.data == "usuario cadastrado") {
+                window.location = "/login"
+            }
+
+        })
+
+    </script>
+
 </html>

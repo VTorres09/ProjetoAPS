@@ -10,12 +10,14 @@ class CadastroNutricionista {
     }
     
     // //////////////// Auth //////////////// //
-    register(cpf: string, senha: string) {
+    async register(cpf: string, senha: string) {
 
         const nutricionista = new Nutricionista(cpf, senha);
         const nutricionistaBDR : any = this.fabrica.criarRepositorioNutricionista();
 
-        nutricionistaBDR.storeUser(nutricionista)
+        const res = await nutricionistaBDR.storeUser(nutricionista)
+        
+        return res
 
     }
 
