@@ -1,13 +1,13 @@
-import express from 'express';
 import axios from 'axios';
+import express from 'express';
 
 const routes = express.Router();
 
-const SERVICO_ACESSO_URL = 'http://localhost:3001'
+const SERVICO_ACESSO_URL = 'http://servico_acesso:3001'
 
 routes.post('/login', async (req, res) => {
 
-  const servicoAcessoResponse = await axios.post(SERVICO_ACESSO_URL + "/login", 
+  const servicoAcessoResponse = await axios.post(SERVICO_ACESSO_URL + "/login",
     req.body
   );
   res.json(servicoAcessoResponse.data);
@@ -17,10 +17,10 @@ routes.post('/login', async (req, res) => {
 
 routes.post('/register', async (req, res) => {
 
-  const servicoAcessoResponse = await axios.post(SERVICO_ACESSO_URL + "/register", 
+  const servicoAcessoResponse = await axios.post(SERVICO_ACESSO_URL + "/register",
     req.body
   );
-  res.json(servicoAcessoResponse.data); 
+  res.json(servicoAcessoResponse.data);
 
 });
 

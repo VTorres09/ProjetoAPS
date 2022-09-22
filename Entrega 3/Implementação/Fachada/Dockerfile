@@ -15,3 +15,5 @@ CMD [ "npm", "run", "dev" ]
 
 # Bundle app source
 COPY . .
+
+EXPOSE 3000

@@ -8,7 +8,7 @@ const app = express();
 app.use(express.static("public"));
 
 const port = 8080;
-const FACHADA_URL = "http://localhost:3000"
+const FACHADA_URL = "http://fachada:3000"
 
 app.use(bodyParser.json())
 
