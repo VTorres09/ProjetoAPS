@@ -9,6 +9,7 @@
         <link href="styles/form.css" rel="stylesheet" type="text/css" />
         <link href="styles/login.css" rel="stylesheet" type="text/css" />
         <link href="style.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     </head>
 
     <body class="column">
@@ -16,22 +17,30 @@
         <div class="column card login__card">
 
             <h1>Login</h1>
-            <form id="form_id" class="column login__form" method="POST" action="http://localhost:3000/auth/login" >
+            <div id="form_id" class="column login__form" >
                 <input type="tel" class="form__input" id="cpf" name="cpf" placeholder="CPF" />
                 <input type="password" class="form__input" id="pass" name="password" placeholder="Senha" />
                 <button class="form__button login__button" id="login">Entrar</button>
-            </form>
+            </div>
 
         </div>
 
     </body>
 
     <script>
-        
-        const form = document.getElementById("form_id");
-        
-        form.addEventListener('submit', (this) => {
-            console.log(this)
+
+        console.log(axios)
+
+        const button    = document.getElementById("login");
+        const cpf       = document.getElementById("cpf");
+        const password  = document.getElementById("pass");
+
+        button.addEventListener('click', async () => {
+            const r = await axios.post('/login', {
+                cpf: cpf.value,
+                password: password.value
+            })
+            console.log(r.data)
         })
 
     </script>
