@@ -1,0 +1,39 @@
+services:
+  fachada:
+    build: ./Fachada
+    container_name: fachada
+    ports:
+      - "3000:3000"
+    expose:
+      - 3000
+    links:
+      - servico_acesso
+      - servico_prato
+    environment:
+      - APPID=1
+
+  frontend:
+    build: ./Frontend
+    container_name: frontend
+    ports:
+      - "8080:8080"
+    links:
+      - fachada
+    environment:
+      - APPID=2
+
+  servico_acesso:
+    build: ./ServicoAcesso
+    container_name: servico_acesso
+    ports:
+      - "3001:3001"
+    environment:
+      - APPID=3
+
+  servico_prato:
+    build: ./ServicoPrato
+    container_name: servico_prato
+    ports:
+      - "3002:3002"
+    environment:
+      - APPID=4

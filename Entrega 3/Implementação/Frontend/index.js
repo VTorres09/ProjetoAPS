@@ -12,22 +12,22 @@ const FACHADA_URL = "http://localhost:3000"
 
 app.use(bodyParser.json())
 
-app.post('/login', async (req,res) => {
+app.post('/login', async (req, res) => {
 
     const postResponse = await axios.post(FACHADA_URL + "/auth/login", {
-        cpf:        req.body.cpf,
-        password:   req.body.password
+        cpf: req.body.cpf,
+        password: req.body.password
     })
 
     res.send(postResponse.data)
 
 });
 
-app.post('/register', async (req,res) => {
+app.post('/register', async (req, res) => {
 
     const postResponse = await axios.post(FACHADA_URL + "/auth/register", {
-        cpf:        req.body.cpf,
-        password:   req.body.password
+        cpf: req.body.cpf,
+        password: req.body.password
     })
 
     res.send(postResponse.data)
@@ -36,24 +36,24 @@ app.post('/register', async (req,res) => {
 
 
 ///// VIEWS //////
-app.get('/',function(req,res){
+app.get('/', function (req, res) {
     res.redirect('/login')
 });
 
-app.get('/login',function(req,res){
-    res.sendFile(path.join(__dirname+'/src/views/login.html'));
+app.get('/login', function (req, res) {
+    res.sendFile(path.join(__dirname + '/src/views/login.html'));
 });
 
-app.get('/register',function(req,res){
-    res.sendFile(path.join(__dirname+'/src/views/register.html'));
+app.get('/register', function (req, res) {
+    res.sendFile(path.join(__dirname + '/src/views/register.html'));
 });
 
-app.get('/create-item',function(req,res){
-    res.sendFile(path.join(__dirname+'/src/views/createItem.html'));
+app.get('/create-item', function (req, res) {
+    res.sendFile(path.join(__dirname + '/src/views/createItem.html'));
 });
 
-app.get('/dish-list',function(req,res){
-    res.sendFile(path.join(__dirname+'/src/views/dishList.html'));
+app.get('/dish-list', function (req, res) {
+    res.sendFile(path.join(__dirname + '/src/views/dishList.html'));
 });
 
 
