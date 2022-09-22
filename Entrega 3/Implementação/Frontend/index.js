@@ -40,8 +40,8 @@ app.get('/pratos', async (req,res) => {
 
     const pratosResponse = await axios.get(FACHADA_URL + "/pratos/", {})
 
-    res.json(pratosResponse)
-
+    res.json(pratosResponse.data)
+    
 });
 
 
