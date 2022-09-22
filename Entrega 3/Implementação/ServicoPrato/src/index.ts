@@ -7,9 +7,15 @@ const port = 3002;
 
 app.use(bodyParser.json())
 
+// app.get('/ingredients', async () => {
+
+// })
+
 app.get('/', async (req, res) => {
   
-  return await Fachada.listarPratos();
+  Fachada.listarPratos().then((pratos) => {
+    pratos ? res.json(pratos) : res.json(pratos)
+  })
 
 });
 

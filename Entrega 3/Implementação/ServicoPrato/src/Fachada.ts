@@ -18,6 +18,8 @@ class Fachada {
 
     static async listarPratos() {
 
+        console.log("chamou")
+
         let cadastroPrato = new CadastroPrato(fabricaConcreta);
         return await cadastroPrato.listarPratos()
 

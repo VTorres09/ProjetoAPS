@@ -12,6 +12,8 @@ const FACHADA_URL = "http://localhost:3000"
 
 app.use(bodyParser.json())
 
+
+///////////////// ENDPOINTS ////////////////
 app.post('/login', async (req,res) => {
 
     const postResponse = await axios.post(FACHADA_URL + "/auth/login", {
@@ -34,10 +36,18 @@ app.post('/register', async (req,res) => {
 
 });
 
+app.get('/pratos', async (req,res) => {
+
+    const pratosResponse = await axios.get(FACHADA_URL + "/pratos/", {})
+
+    res.send("oi")
+
+});
+
 
 ///// VIEWS //////
 app.get('/',function(req,res){
-    res.redirect('/login')
+    res.redirect('/register')
 });
 
 app.get('/login',function(req,res){

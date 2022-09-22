@@ -7,9 +7,7 @@ const SERVICO_PRATO_URL = 'http://localhost:3002'
 
 routes.get('/', async (req, res) => {
 
-  const servicoAcessoResponse = await axios.get(SERVICO_PRATO_URL, 
-    req.body
-  );
+  const servicoAcessoResponse = await axios.get(SERVICO_PRATO_URL + "/", {});
   res.json(servicoAcessoResponse.data); 
 
 });
