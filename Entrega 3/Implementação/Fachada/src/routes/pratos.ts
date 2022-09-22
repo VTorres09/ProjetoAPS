@@ -5,6 +5,13 @@ const routes = express.Router();
 
 const SERVICO_PRATO_URL = 'http://localhost:3002'
 
+routes.get('/ingredients', async (req, res) => {
+  
+  const servicoAcessoResponse = await axios.get(SERVICO_PRATO_URL + "/ingredients", {});
+  res.json(servicoAcessoResponse.data); 
+
+})
+
 routes.get('/', async (req, res) => {
 
   const servicoAcessoResponse = await axios.get(SERVICO_PRATO_URL + "/", {});
