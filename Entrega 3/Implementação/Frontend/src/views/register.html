@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>SignUp</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="styles/global.css" rel="stylesheet" type="text/css" />
+        <link href="styles/form.css" rel="stylesheet" type="text/css" />
+        <link href="styles/login.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body class="column">
+        
+        <div class="column card login__card">
+
+            <h1>Sign Up</h1>
+            <form class="column login__form" method="POST" action="http://localhost:3000/auth/register">
+                <input type="tel" class="form__input" name="cpf" placeholder="CPF" />
+                <input type="password" class="form__input" name="password" placeholder="Senha" />
+                <button class="form__button login__button" type="submit">Registrar</button>
+            </form>
+
+        </div>
+
+    </body>
+</html>

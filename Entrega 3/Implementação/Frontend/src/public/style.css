@@ -1,0 +1,284 @@
+
+html{
+    background-color: rgb(252, 242, 242);
+    font-family: 'Roboto', sans-serif;
+    color: #666;
+}
+
+.card{
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+    padding: 20px 20px;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin: 0;
+}
+.row{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: space-between;
+    margin: 0;
+}
+@media only screen and (max-width: 600px) {
+    .row {
+        flex-direction: column;
+    }
+    .column {
+        justify-content: center;
+    }
+}
+
+.non-responsive-row{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: space-between;
+    margin: 0;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: fff;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
+    width: 100%;
+    margin-bottom: 30px;
+} 
+.navbar__item {
+    margin: 1rem 2rem;
+}
+
+.accent__text {
+    color: rgb(255, 123, 123);
+}
+.accent__bg {
+    background-color: rgb(255, 123, 123);
+}
+
+.row_space_between { 
+    display: flex;
+    justify-content: space-between;
+}
+
+.row_centered { 
+    display: flex;
+    align-items: center;
+}
+
+
+.form__input {
+    color: #666;
+    box-shadow: inset 3px 3px 5px rgba(0,0,0,0.15);
+    background-color: rgb(255, 255, 255);
+    border-radius: 12px;
+    font-size: 1.2rem;
+    margin: 0 auto 1rem auto;
+    padding: 1.5rem 2rem;
+    border: none;
+    width: 100%;
+    outline: 0;
+    transition: all 0.5s ;
+}   .form__input:focus {
+        color: rgb(255, 123, 123);
+        box-shadow: inset -1px -2px 2px rgba(50,0,0,0.2);
+        background-color: rgb(255, 250, 250);
+        transition: all 0.5s cubic-bezier(0.1, 0.9, 0.3, 1.5);
+    }
+
+.form__button {
+    background-color: rgb(255, 123, 123);
+    border-radius: 12px;
+    box-shadow: 3px 4px 5px rgba(0,0,0,0.15);
+    color: white;
+    font-size: 1.2rem;
+    padding: 1.5rem 2rem;
+    border: none;
+    width: 100%;
+    outline: 0;
+    transition: all 0.5s ;
+}   .form__button:hover {
+        box-shadow: 4px 5px 8px rgba(50,0,0,0.2);
+        transition: all 0.5s cubic-bezier(0.1, 0.9, 0.3, 1.5);
+}
+
+
+.login__card{
+    margin: 20vh 50px 0 50px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.login__button{
+    margin: 1rem auto -5rem auto;
+}
+
+.login__form {
+    margin: 2rem 0 2rem 0
+}
+
+.ingredient__card {
+    width: 40vw;
+    max-width: 600px;
+    margin-bottom: 15px;
+    transition: all 0.5s cubic-bezier(0.1, 0.9, 0.3, 1.5);
+}
+.ingredient__card--selected {
+    border: 5px solid rgb(255, 123, 123);
+    background-color: rgb(255, 250, 250);
+    box-shadow: 1px 2px 25px rgba(0,0,0,0.25);
+    transition: all 0.5s cubic-bezier(0.1, 0.9, 0.3, 1.5);
+}
+
+.menu_item__card {
+    top: 10vh;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20vh;
+}
+
+@media only screen and (max-width: 600px) {
+    .ingredient__card {
+        width: 85vw;
+        max-width: 600px;
+        margin-bottom: 15px;
+    }
+    
+    .menu_item__card {
+        position: fixed;
+        top: 50px;
+        width: 90vw;
+        max-width: 600px;
+        margin-top: 0;
+    }
+}
+
+.menu_title {
+    margin-right: 10%;
+}
+
+.menu_item__input {
+    max-width: 100%;
+}
+@media only screen and (max-width: 600px) {
+    .menu_item__input {
+        height: 2rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .create__button { 
+        margin-bottom: -3rem;
+        height: 2rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .ingredients_list { 
+        margin-top: 30vh;
+    }
+}
+
+.checkbox {
+    height: 50px;
+    width: 50px;
+    border-radius: 12px;
+} .checkbox:checked {
+    background-color: red;
+}
+
+.button {
+    width: 10%;
+    margin-right: 2%;
+}
+
+.nav__button {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 2rem;
+    align-self: center;
+    background-color: rgb(255, 196, 123);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.5s cubic-bezier(0.1, 0.9, 0.3, 1.5);
+}
+
+.center_col {
+    justify-content: center;
+    align-items: center;
+}
+
+.dish__card {
+    width: 40vw;
+    max-width: 600px;
+    margin-bottom: 15px;
+    transition: all 0.5s cubic-bezier(0.1, 0.9, 0.3, 1.5);
+}
+
+.delete__button {
+    margin-top: 2rem;
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 2rem;
+    align-self: center;
+    background-color: rgb(255, 123, 123);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.5s cubic-bezier(0.1, 0.9, 0.3, 1.5);
+}
+
+.edit__button {
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 2rem;
+    align-self: center;
+    background-color: rgb(255, 196, 123);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.5s cubic-bezier(0.1, 0.9, 0.3, 1.5);
+}
+
+.button {
+    width: 10%;
+    margin-right: 2%;
+}
